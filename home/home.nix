@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
-    usr = "ff";
-    host = "fnix";
+  usr = "ff";
+  host = "fnix";
 in
 {
   # 注意修改这里的用户名与用户目录
@@ -21,7 +21,7 @@ in
     };
   };
 
-    home.packages = with pkgs; [
+  home.packages = with pkgs; [
     # kitty
     # glfw
     # gtk3
@@ -37,8 +37,7 @@ in
     # xorg.xeyes
   ];
 
-
-    home.stateVersion = "25.05";
+  home.stateVersion = "25.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
