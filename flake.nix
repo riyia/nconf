@@ -15,6 +15,11 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # 自建仓库
+    ffpkgs = {
+      url = "github:riyia/ffpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,6 +28,7 @@
       nixpkgs,
       nixos-wsl,
       home-manager,
+      ffpkgs,
       ...
     }@inputs:
     let
@@ -37,11 +43,21 @@
             inherit inputs;
           };
           modules = [
+
+            # 引入自建仓库 : pkgs.ffpkgs.package
+            ({
+              nixpkgs.overlays = [
+                (final: prev: {
+                  ffpkgs = inputs.ffpkgs.packages."${prev.system}";
+                })
+              ];
+            })
+
             ./configuration.nix
+            ./services
 
             nixos-wsl.nixosModules.default
             {
-              # vscode-remote-workaround.enable = true;
               wsl = {
                 enable = true;
                 defaultUser = "${usr}";

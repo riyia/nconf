@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "ffpkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756479344,
+        "narHash": "sha256-8iHAxWqrgS4G9A48wYeVCvNMUP9xDCX4jBwrAvpwlQc=",
+        "owner": "riyia",
+        "repo": "ffpkgs",
+        "rev": "e2b349d10844dc371057448032f1d2bcb127e3b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "riyia",
+        "repo": "ffpkgs",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -86,6 +106,7 @@
     },
     "root": {
       "inputs": {
+        "ffpkgs": "ffpkgs",
         "home-manager": "home-manager",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2"
